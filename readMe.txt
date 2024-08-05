@@ -1,0 +1,2 @@
+This is a project that contains an application that accepts the length and width of a rectangle or triangle and then prints data on them according to pre-assigned settings and the user's request
+in the demos you can see pictures of how it works
