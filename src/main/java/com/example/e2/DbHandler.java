@@ -7,16 +7,17 @@ import java.sql.*;
 //import java.sql.PreparedStement;
 //import java.sql.SQLException;
 
-public class DbHandler {
+public  class DbHandler {
     private static final String
-            DATABASE_URL = "jdbc:mysql://localhost:3305/javafx_registration?useSSL=false";
+            DATABASE_URL = "jdbc:mysql://localhost:3306/tickets_db";
     private static final String DATABASE_USERNAME = "root";
     private static final String DATABASE_PASSWORD = "password";
 
     private static final String SQLEvent = "INSERT INTO events (event_name,event_place,event_type,event_date,isSigned,evevnt_Signed_places) VALUES (?, ?,?,?,?,?)";
-    private static final String SQLUser = "INSERT INTO users (user_name,user_password,user_invites) VALUES (?, ?,?,?,?,?)";
+    private static final String SQLUser = "INSERT INTO users (userName,password) VALUES (?,?)";
 
-    public void insertEvent(Event event)
+
+    public static void insertEvent(Event event)
     {
 
         try(
@@ -38,22 +39,42 @@ public class DbHandler {
             System.out.println("an error in the values");
         }
     }
-    public void insertUser(User user)
+    public static void insertUser(User user)
     {
 
         try(
                 Connection connection = DriverManager.getConnection(DATABASE_URL,DATABASE_USERNAME, DATABASE_PASSWORD);
                 PreparedStatement preparedStatement = connection.prepareStatement(SQLUser)) {
 
-            preparedStatement.setString(1, user.getName());
+            preparedStatement.setString(1, user.getUserName());
             preparedStatement.setString(2,user.getPassword());
-            //preparedStatement.setArray(3,user.getInvitesList());
+
 
             preparedStatement.executeUpdate();
         }
         catch (SQLException e)
         {
-            System.out.println("an error in the values");
+            System.out.println("an error in the values"+e.getMessage());
         }
+    }
+    public static int login(String username,String password){
+        String serch="SELECT password FROM users WHERE userName="+username;
+        String sucssesSerch="SELECT user_id FROM users WHERE userName="+username;
+        try(
+                Connection connection = DriverManager.getConnection(DATABASE_URL,DATABASE_USERNAME, DATABASE_PASSWORD);
+                PreparedStatement preparedStatement = connection.prepareStatement(serch)) {
+            password=preparedStatement.
+            if(password!=check)
+                return 0;
+            else
+              //return user_id
+
+
+        }
+        catch (SQLException e)
+        {
+            System.out.println("an error in the values"+e.getMessage());
+        }
+    }
     }
 }
