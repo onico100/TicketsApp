@@ -1,14 +1,18 @@
-package com.example.e2;
+package com.example.e2.controllers;
 
-import com.sun.javafx.scene.control.IntegerField;
+//class to add event-ui
+import com.example.e2.HomePage;
+import com.example.e2.SignedPlaces;
+import com.example.e2.controllers.HomePageController;
+import com.example.e2.controllers.SignedPlacesController;
+import com.example.e2.handlers.DbHandlerEvent;
+import com.example.e2.handlers.DbHandlerSignedPlaces;
+import com.example.e2.models.Event;
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
-import javafx.event.EventType;
 import javafx.fxml.FXML;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.control.*;
-import javafx.scene.image.ImageView;
-import javafx.scene.layout.VBox;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
@@ -16,7 +20,7 @@ import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.StandardCopyOption;
-import java.sql.Date;
+import java.time.LocalDate;
 
 
 public class AddEventController {
@@ -32,6 +36,7 @@ public class AddEventController {
     public Button btnAddPhoto;
     public Button bthBackToHomePage;
     public TextField txtNumberOfRows;
+    public TextField txtEventCost;
     @FXML
     private DatePicker datePickerEventDate;
 
@@ -41,39 +46,20 @@ public class AddEventController {
 
 
 
-//    public Button rec;
-//    public Button tri;
-//    public VBox all;
-//    public Button ex;
-//
-//    private Button restart= new Button("restart");
-//
-//    private Button drawTriangular;
-//    private Button fScope;
-//
-//
-//
-//    @FXML
-//    private Label chooseOption;
-//
-//    private TextField length;
-//
-//    private TextField wide;
-//    private static int len,wid;
 
-    @FXML
-    protected void close() {
-        System.exit(0);
-    }
+
+
 
 
     @FXML
     public void initialize() {
         lblEventType.setItems(FXCollections.observableArrayList("movie", "play"));
-         event = new Event();
+         event = new Event();//empty event
     }
 
+    //do validation and add the event to the database if everything is fine
     public void onAddEventButtonClicked(ActionEvent actionEvent) {
+        event.setUser_id(HomePageController.user.getId());
         if (!event.isSigned()) {
             if (NumberOfPlaces.getText().isEmpty())
                 txtErrorMessage.setText("Plese enter number of seats");
@@ -86,7 +72,19 @@ public class AddEventController {
         }
         if (!isSelectedDate)
             txtErrorMessage.setText("please choose a date");
-        //Date date=datePickerEventDate
+      LocalDate date= datePickerEventDate.getValue();
+        LocalDate today=LocalDate.now();
+        if(date.isBefore(today))
+            txtErrorMessage.setText("the date must be in the future");
+        else {
+            event.setDate(date);
+        }
+        if(txtEventCost.getText().isEmpty())
+            txtErrorMessage.setText("please enter cost");
+        else{
+            int cost=Integer.parseInt(txtEventCost.getText());
+            event.setCost(cost);
+        }
         String place = txtEventPlace.getText();
         if (place.isEmpty())
             txtErrorMessage.setText("PLEASE ENTER A EVENT PLACE");
@@ -98,11 +96,29 @@ public class AddEventController {
         if (name.isEmpty()) {
             txtErrorMessage.setText("Please enter event name");
         }
-        else
+        else {
             event.setName(name);
+            int eventId= DbHandlerEvent.insertEvent(event);
+            txtErrorMessage.setText("added event!");
+            event.setID(eventId);
+            if(event.isSigned()){
+                event.setSignedPlaces(SignedPlacesController.getSeatsMat());
+                event.setNumberOfSeats(Integer.parseInt(txtNumberOfRows.getText()));
+                setSignedPlaces();
+            }
+        }
+    }
+    //set the signed places into the database
+    private void setSignedPlaces(){
+        int[][] signedPlaces= event.getSignedPlaces();
+        for(int i=0;i<signedPlaces.length;i++)
+            for (int j=0;j<signedPlaces[i].length;j++)
+                DbHandlerSignedPlaces.insertSeat(event,i,j);
+        event.setNumberOfSeats(DbHandlerSignedPlaces.getAvailableSeatsForEvent(event.getID()));
     }
 
 
+    //open sence that will get the signed places data from the user.
     public void ifSignedPlaces(ActionEvent actionEvent) throws IOException {
         event.setSigned(true);
         int  numberOfRows=Integer.parseInt(txtNumberOfRows.getText());
@@ -145,7 +161,7 @@ public class AddEventController {
 
         if (selectedFile != null) {
             // Specify the location where you want to save the photo
-            File saveLocation = new File("C:\\Users\\אודיה\\IdeaProjects\\e2\\src\\main\\resources\\com\\example\\e2\\EventsPhotos" + EventName);
+            File saveLocation = new File("C:/Users/אודיה/IdeaProjects/e2/src/main/resources/com/example/e2/EventsPhotos/" + EventName+".jpg");
 
             try {
                 // Copy the file to the specified location
@@ -158,30 +174,7 @@ public class AddEventController {
     }
 
     public void onBackToHomePage(ActionEvent actionEvent) throws IOException {
-        HomePage.moveToHomePage();
+        HomePage.moveToHomePageUser();
     }
 }
-/*<?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.Insets?>
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.CheckBox?>
-<?import javafx.scene.control.ComboBox?>
-<?import javafx.scene.control.DatePicker?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.control.TextField?>
-<?import javafx.scene.layout.VBox?>
-<VBox fx:id="all" alignment="CENTER" prefHeight="412.0" prefWidth="348.0" spacing="20.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.e2.AddEventController">
-    <padding>
-        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
-    </padding>
-    <TextField fx:id="txtEventName" promptText="Enter event name" />
-    <ComboBox fx:id="lblEventType" onAction="#onSelectType" promptText="Select event type" />
-    <TextField fx:id="txtEventPlace" promptText="Enter event place" />
-    <DatePicker fx:id="datePickerEventDate" onAction="#onChooseDate" promptText="choose date" />
-    <CheckBox fx:id="checkboxIsSignedPlaces" onAction="#ifSignedPlaces" text="Signed Places" />
-    <TextField fx:id="NumberOfPlaces" promptText="enter number of seats" />
-   <Button fx:id="btnAddPhoto" mnemonicParsing="false" onAction="#onAddPhoto" text="Add Photo" textFill="#040114" />
-    <Button fx:id="btnAddEvent" onAction="#onAddEventButtonClicked" text="Add Event" />
-    <Label fx:id="txtErrorMessage" textFill="#c91212" />
-</VBox>*/

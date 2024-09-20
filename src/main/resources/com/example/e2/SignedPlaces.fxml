@@ -7,22 +7,23 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.e2.SignedPlacesController">
+<AnchorPane prefHeight="600" prefWidth="1000" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.e2.controllers.SignedPlacesController">
    <children>
-      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="400.0" layoutY="-1.0" stroke="BLACK" strokeType="INSIDE" width="600.0" />
-      <Text fill="#e4dbdb" layoutX="46.0" layoutY="41.0" strokeType="OUTSIDE" strokeWidth="0.0" text="TicketsApp">
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#1eb2d9" height="609.0" layoutY="-1.0" stroke="BLACK" strokeType="INSIDE" width="1006.0" />
+      <Text fill="#e4dbdb" layoutX="408.0" layoutY="58.0" strokeType="OUTSIDE" strokeWidth="0.0" text="TicketsApp">
          <font>
             <Font size="29.0" />
          </font>
       </Text>
-      <Text layoutX="161.0" layoutY="86.0" strokeType="OUTSIDE" strokeWidth="0.0" text="please enter number of seats in every row from 0 up" />
-      <Text layoutX="150.0" layoutY="120.0" strokeType="OUTSIDE" strokeWidth="0.0" text="from row" />
-      <Text layoutX="263.0" layoutY="120.0" strokeType="OUTSIDE" strokeWidth="0.0" text="to row" />
-      <Text layoutX="351.0" layoutY="120.0" strokeType="OUTSIDE" strokeWidth="0.0" text="number of seats" />
-      <Button fx:id="btnAddMoreRows" layoutX="452.0" layoutY="136.0" mnemonicParsing="false" onAction="#onAddMoreRows" text="add more rows" />
-      <TextField fx:id="txtFromRow" layoutX="153.0" layoutY="136.0" prefHeight="17.0" prefWidth="41.0" promptText="0" />
-      <TextField fx:id="txtToRow" layoutX="259.0" layoutY="136.0" prefHeight="17.0" prefWidth="41.0" />
-      <TextField fx:id="txtNumberOfSeatsInRow" layoutX="351.0" layoutY="136.0" prefHeight="17.0" prefWidth="85.0" />
-      <Button fx:id="finish" layoutX="278.0" layoutY="348.0" mnemonicParsing="false" onAction="#finish" text="finish" />
+      <Text layoutX="340.0" layoutY="96.0" strokeType="OUTSIDE" strokeWidth="0.0" text="please enter number of seats in every row from 0 up" />
+      <Text layoutX="328.0" layoutY="120.0" strokeType="OUTSIDE" strokeWidth="0.0" text="from row" />
+      <Text layoutX="400.0" layoutY="120.0" strokeType="OUTSIDE" strokeWidth="0.0" text="to row" />
+      <Text layoutX="460.0" layoutY="120.0" strokeType="OUTSIDE" strokeWidth="0.0" text="number of seats" />
+      <Button fx:id="btnAddMoreRows" layoutX="568.0" layoutY="136.0" mnemonicParsing="false" onAction="#onAddMoreRows" text="add more rows" />
+      <TextField fx:id="txtFromRow" layoutX="330.0" layoutY="136.0" prefHeight="17.0" prefWidth="41.0" promptText="0" />
+      <TextField fx:id="txtToRow" layoutX="397.0" layoutY="136.0" prefHeight="17.0" prefWidth="41.0" />
+      <TextField fx:id="txtNumberOfSeatsInRow" layoutX="462.0" layoutY="136.0" prefHeight="17.0" prefWidth="85.0" />
+      <Button fx:id="finish" layoutX="440.0" layoutY="181.0" mnemonicParsing="false" onAction="#finish" text="finish" />
+      <Button layoutX="425.0" layoutY="225.0" mnemonicParsing="false" onAction="#goToHomePage" text="HomePage" />
    </children>
 </AnchorPane>

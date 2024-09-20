@@ -14,7 +14,7 @@ public class SignedPlaces extends Application {
     @Override
     public void start(Stage stage) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(HomePage.class.getResource("SignedPlaces.fxml"));
-        Scene scene = new Scene(fxmlLoader.load(), 600, 400);
+        Scene scene = new Scene(fxmlLoader.load(), 1000, 600);
         signedPlacesParmryStage=stage;
         signedPlacesParmryStage.setTitle("SignedPlaces");
         signedPlacesParmryStage.setScene(scene);
