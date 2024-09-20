@@ -7,6 +7,7 @@ public class Order {
     private int seatRow;
     private int seatNum;
 
+
     public Order(int user_id,int event_id){
         this.user_id=user_id;
         this.event_id=event_id;
@@ -19,6 +20,8 @@ public class Order {
         sign=true;
         seatRow=row;
         this.seatNum=seaNum;
+        System.out.println("");
+
     }
 
     public int getEvent_id() {

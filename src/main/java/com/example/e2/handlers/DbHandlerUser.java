@@ -63,6 +63,7 @@ public  class DbHandlerUser {
     public static void updateCreditCardDetails(User user) {
         String SQLUpdateCard = "UPDATE users SET credit_card_owner_id = ?, credit_card_num = ?, credit_card_cvc = ?, credit_card_validity = ? WHERE user_id = ?";
 
+        System.out.println("");
         try (
                 Connection connection = DriverManager.getConnection(DATABASE_URL, DATABASE_USERNAME, DATABASE_PASSWORD);
                 PreparedStatement preparedStatement = connection.prepareStatement(SQLUpdateCard)

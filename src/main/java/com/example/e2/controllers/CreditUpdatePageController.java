@@ -34,6 +34,7 @@ public class CreditUpdatePageController {
             String creditCardNumber = txtCreditCardNumber.getText();
             int creditCardCVC = Integer.parseInt(txtCreditCardCVC.getText());
             String creditCardValidity = txtCreditCardValidity.getText();
+            System.out.println("");
 
             // Input validation
             if (creditCardValidity.isEmpty() || !creditCardValidity.matches("\\d{2}/\\d{2}")) {

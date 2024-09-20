@@ -21,6 +21,7 @@ public class DBHandlerOrder {
     public static void insertUnsignedOrder(Order order) {
         String query = "INSERT INTO orders (user_id, event_id) VALUES (?, ?)";
 
+        System.out.println("");
         try (Connection connection = getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(query)) {
 

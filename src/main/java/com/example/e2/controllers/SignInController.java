@@ -47,6 +47,7 @@ public class SignInController {
         }
         if (userPassword.length() < 4) {
             tetEroorMesagge.setText("Password must have at least 4 letters");
+            System.out.println("");
             return;
         }
 

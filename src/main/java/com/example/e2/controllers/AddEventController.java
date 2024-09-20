@@ -55,6 +55,7 @@ public class AddEventController {
     public void initialize() {
         lblEventType.setItems(FXCollections.observableArrayList("movie", "play"));
          event = new Event();//empty event
+        System.out.println("");
     }
 
     //do validation and add the event to the database if everything is fine

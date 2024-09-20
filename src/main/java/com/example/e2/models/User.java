@@ -13,6 +13,8 @@ public class User {
         this.userName = name;
         this.password = password;
         this.id = 0;
+        System.out.println("");
+
     }
 
     // Getters and Setters for credit card details

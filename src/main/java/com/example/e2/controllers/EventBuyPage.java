@@ -67,6 +67,7 @@ public class EventBuyPage {
    //open a sense to collect seat data
     private void SignedPlacesBuy() throws IOException {
         HomePage.moveToSignedPlaceBuyPage();
+        System.out.println("");
     }
 
     public void goToUserPage(ActionEvent actionEvent) throws IOException {

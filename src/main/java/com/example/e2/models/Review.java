@@ -10,6 +10,9 @@ public class Review {
         this.eventName = eventName;
         this.content = content;
         this.rating = rating;
+
+        System.out.println("");
+
     }
 
 

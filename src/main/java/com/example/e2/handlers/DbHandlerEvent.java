@@ -237,6 +237,7 @@ public  class DbHandlerEvent {
             preparedStatement.setInt(1, eventId);
 
             ResultSet resultSet = preparedStatement.executeQuery();
+            System.out.println("");
 
             // Check if an event is found
             if (resultSet.next()) {

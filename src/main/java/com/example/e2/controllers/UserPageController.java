@@ -56,7 +56,9 @@ public class UserPageController {
         Order[] orders= DBHandlerOrder.getOrdersByUserId(HomePageController.user.getId());
         if (orders.length==0)
             txtOrder.setText("no orders found");
+
         else
+            System.out.println("");
             OrdersList.getChildren().remove(txtOrder);
         for (Order value : orders) {
             Label txtTemp = new Label("");

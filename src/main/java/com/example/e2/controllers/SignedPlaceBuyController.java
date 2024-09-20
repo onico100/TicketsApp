@@ -24,6 +24,7 @@ public class SignedPlaceBuyController {
     public void initialize() {
         seatMatrix= DbHandlerSignedPlaces.getSeatingMatrix(EventBuyPage.event.getID());
         createSeatMatrix(seatMatrix);
+        System.out.println("");
     }
 
     // Create seat matrix UI in the grid

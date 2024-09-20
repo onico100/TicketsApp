@@ -19,6 +19,8 @@ public class SignedPlaces extends Application {
         signedPlacesParmryStage.setTitle("SignedPlaces");
         signedPlacesParmryStage.setScene(scene);
         signedPlacesParmryStage.show();
+        System.out.println("");
+
     }
     public static void finish(){
         signedPlacesParmryStage.close();

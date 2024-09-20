@@ -67,6 +67,8 @@ public class HomePage extends Application {
         Scene scene = new Scene(fxmlLoader.load(), 1000, 600);
         HomePageParmryStage.setScene(scene);
         HomePageParmryStage.show();
+        System.out.println("");
+
     }
     public static void moveToSignIn() throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(HomePage.class.getResource("SignIn.fxml"));

@@ -37,6 +37,7 @@ public class SignedPlacesController {
         txtFromRow.setText(String.valueOf(fromRow));
         txtToRow.setText("");
         txtNumberOfSeatsInRow.setText("");
+        System.out.println("");
     }
 
     public void finish(ActionEvent actionEvent) {

@@ -133,6 +133,7 @@ public class DbHandlerSignedPlaces {
             preparedStatement.setInt(2, rowNum);
             preparedStatement.setInt(3, seatNum);
 
+            System.out.println("");
             // Execute the update query
             int rowsAffected = preparedStatement.executeUpdate();
 

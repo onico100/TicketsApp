@@ -38,6 +38,10 @@ public class Event {
         cost=eventCost;
         this.numberOfSeats=numberOfSeats;
         signedPlaces=null;
+        System.out.println("");
+        System.out.println("");
+
+
     }
 
     public int getUser_id() {

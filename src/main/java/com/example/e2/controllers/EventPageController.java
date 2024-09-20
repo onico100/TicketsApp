@@ -124,6 +124,7 @@ public class EventPageController {
 
     public void goToHomePage(ActionEvent actionEvent) throws IOException {
         HomePage.moveToHomePageUser();
+        System.out.println("");
     }
 
     public void addReview(ActionEvent actionEvent) {

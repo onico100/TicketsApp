@@ -27,6 +27,7 @@ public class DbHandlerReview {
             preparedStatement.setString(2, review.getContent());
             preparedStatement.setInt(3, review.getRating()); // Set rating
 
+            System.out.println("");
             preparedStatement.executeUpdate();
 
         } catch (SQLException e) {

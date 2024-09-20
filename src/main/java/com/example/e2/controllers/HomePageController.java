@@ -145,7 +145,7 @@ public class HomePageController {
             getEventPage(eventName);
         else
             txtSerchFiled.setText("didnt found event");
-
+        System.out.println("");
     }
 
 
